@@ -354,3 +354,45 @@ class deletion:
             current.next.prev = current.prev
 
         return head
+
+
+# ---------------------------------------------------------------------------------------------------------------
+#                          Circular Linked List Implementation
+# ----------------------------------------------------------------------------------------------------------------
+
+
+class CircularNode:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+# ---------- Building a circular linked list from a list of values ----------#
+def build_circular_linked_list(values):
+    if not values:
+        return None
+
+    head = CircularNode(values[0])
+    current = head
+
+    for value in values[1:]:
+        current.next = CircularNode(value)
+        current = current.next
+
+    current.next = head  # Make it circular
+    return head
+
+
+# ----------- printing a circular linked list ----------#
+def print_circular_linked_list(head):
+    if head is None:
+        print("None")
+        return
+
+    current = head
+    while True:
+        print(current.value, end=" -> ")
+        current = current.next
+        if current == head:
+            break
+    print("(back to head)")

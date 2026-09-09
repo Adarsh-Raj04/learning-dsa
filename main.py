@@ -3,19 +3,9 @@ from ll import *
 
 nums = [10, 20, 30, 40]
 
-
-head = build_doubly_linked_list(nums)
-print("Original doubly linked list:")
-print_doubly_linked_list(head)
-print()
-
-print("Inserting at head:")
-head = insertion.insert_at_head(head, 5)
-print_doubly_linked_list(head)
-print()
+head = build_circular_linked_list(nums)
+print_circular_linked_list(head)
 
 
-print("Inserting at tail:")
-head = insertion.insert_at_tail(head, 50)
-print_doubly_linked_list(head)
-print()
+# ----- check if cyclic
+print("Is cyclic:", has_cycle(head))
