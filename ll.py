@@ -308,3 +308,49 @@ class insertion:
 
         current.next = new_node
         return head
+
+
+# ----------- Deletion in doubly Linked List -----------#
+class deletion:
+    @staticmethod
+    def delete_at_head(head):
+        if head is None:
+            return None
+        new_head = head.next
+        if new_head is not None:
+            new_head.prev = None
+        return new_head
+
+    @staticmethod
+    def delete_at_tail(head):
+        if head is None:
+            return None
+
+        tail = get_tail_of_doubly_linked_list(head)
+        if tail.prev is not None:
+            tail.prev.next = None
+        else:
+            return None  # List had only one node
+
+        return head
+
+    @staticmethod
+    def delete_at_position(head, position):
+        if position == 0:
+            return deletion.delete_at_head(head)
+
+        current = head
+        for _ in range(position):
+            if current is None:
+                raise Exception("Position out of bounds.")
+            current = current.next
+
+        if current is None:
+            raise Exception("Position out of bounds.")
+
+        if current.prev is not None:
+            current.prev.next = current.next
+        if current.next is not None:
+            current.next.prev = current.prev
+
+        return head
